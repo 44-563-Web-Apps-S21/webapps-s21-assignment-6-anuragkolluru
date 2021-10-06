@@ -1,90 +1,65 @@
 <!DOCTYPE html>
 <html>
- <head>
-     <title>Car Orders Page</title>
- </head>
+
+<head>
+    <title>
+        Car Orders Page
+    </title>
+</head>
+
 <body>
 
-<h3>Anurag Kolluru orders a car</h3>
-<form>
-    <label>electric</label>
-    <input type="checkbox" id="checkbox1" name="checkbox1"value="electric">
-    <label>ac</label>
-    <input type="checkbox" id="checkbox2" name="checkbox2" value="ac">
-    <label>gps</label>
-    <input type="checkbox" id="checkbox3" name="checkbox3" value="gps">
-    <input type ="button" value="Order a car" onclick="orderCar()">
-</form>
-<p id="result1">Default Text</p>
-<br>
- <form>
-    <label >Enter a property</label>
-    <input type ="text" id="color1" name="color1"  value="color"> <br>
-    
-    <label >Enter a value</label>
-    <input type ="text" id="color2" name="color2"  > <br>
+    <h1>Anurag Kolluru orders a car</h1>
+
+    <form>
+        <input type="checkbox" id="checkbox1" name="box1" value="electric">
+        <label for="electric">electric</label><br>
+
+        <input type="checkbox" id="checkbox2" name="box2" value="ac">
+        <label for="ac">ac</label><br>
+
+        <input type="checkbox" id="checkbox3" name="box3" value="gps">
+        <label for="gps">gps</label><br><br>
+
+        <input type="button" value="Order a car" onclick="orderCar()">
+
+    </form>
+    <p id="result1"> </p>
     <br>
-    <input type="button" onclick="updateCar()" value="Update the car">
-</form> 
- <p id="result2">Default Text</p> 
+    <form>
+        <label for="property">Enter a property</label>
+        <input type="text" value="color" id="property"><br><br>
+        <label for="value">Enter a value</label>
+        <input type="text" id="value"> <br><br>
+        <input type="button" value="Update the car" onclick="updateCar()"><br>
+    </form>
 
-<script> 
 
-function resolveForm (){
-    age = document.getElementById("form1_age").value
-    nick = document.getElementById("form1_nick").value
-    confirmed = confirm("Are these the values? "+age+" and "+nick)
-    
-    out = document.getElementById("result1")
-    if(confirmed){
-        out.innerHTML = "Values were confirmed"
-    } else {
-        out.innerHTML = "Values were not confirmed"
-    }
-}
+    <p id="result2"></p>
+    <script>
 
-var my_car= {}
-function orderCar(){
-    var box= document.getElementsByName("checkbox")
-var electric= document.getElementById("checkbox1").value
-var ac= document.getElementById("checkbox2").value
-var gps= document.getElementById("checkbox3").value
-out=document.getElementById("result1")
-if(checkbox[0].checked == true){
- my_car.electric= true
- }
- else{
-    my_car.electric= false
- }
- if(checkbox[1].checked == true){
- my_car.ac= true
- }
- else{
-    my_car.ac= false
- }
-if(checkbox[2].checked == true){
-my_car.gps= true
- }
- else{
-    my_car.gps= false
- }
-console.log(my_car);
-//const myArray = Object.values(my_car);
-//out.innerHTML= myArray
-out.innerHTML = "{electric:"+my_car.electric + ", " + "ac:"+my_car.ac + ", " +"gps:"+ my_car.gps+"}";
-}
+        let my_car = {};
 
-function updateCar(){
-    var color= document.getElementsByName("color")
-    property = document.getElementById("color1").value
-    color1 = document.getElementById("color2").value
-    my_car={}
-    my_car.property= color1
-    out = document.getElementById("result2")
-    out.innerHTML ="my_car["+property+"]="+ my_car.property
-}
+        function orderCar() {
+            my_car = {};
+            electric = document.getElementById("checkbox1").checked;
+            ac = document.getElementById("checkbox2").checked;
+            gps = document.getElementById("checkbox3").checked;
+            my_car = {'electric':electric, 'ac':ac,'gps':gps};
+            out = document.getElementById("result1");
+            out.innerHTML = JSON.stringify(my_car);
+        }
 
-</script>
+        function updateCar() {
+            value = document.getElementById("value").value
+            property = document.getElementById("property").value
+
+            out = document.getElementById("result2");
+            my_car[property] = value;
+            out.innerHTML = JSON.stringify(my_car);
+        }
+    </script>
 
 </body>
-</html> 
+
+</html>

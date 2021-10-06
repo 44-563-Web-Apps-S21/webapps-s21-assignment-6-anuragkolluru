@@ -23,10 +23,10 @@
     <br>
 
     <p id="resultedVal"> This text will be replaced </p>
-<br>
-<div class="container">
-    <img src="leo.jpg" id="Myimage" alt="Leopard Image" height="200" width="200" onclick=newImage()>
-</div>
+    <br>
+    <div class="container">
+        <img src="leo.jpg" id="Myimage" alt="Leopard Image" height="200" width="200" onclick=newImage()>
+    </div>
     <script>
         let correct = 0;
         let wrong = 0;
@@ -34,7 +34,11 @@
         function processPhrase() {
             let secretValue = document.getElementById("password").value;
             let guessedValue = document.getElementById("guessPassword").value;
-            if (secretValue == guessedValue) {
+            if (wrong > 2) {
+                alert("account locked");
+
+            }
+            else if (secretValue == guessedValue) {
                 correct += 1;
                 alert("Access allowed");
                 document.getElementById("resultedVal").innerHTML = " Your result correct count : " + correct;
